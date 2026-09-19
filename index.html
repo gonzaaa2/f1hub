@@ -1,0 +1,1117 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>F1 Hub | Fórmula 1</title>
+
+<meta name="description"
+content="F1 Hub - Calendario, pilotos, equipos, circuitos y campeonato de Fórmula 1.">
+
+<style>
+
+:root {
+    --bg: #07080b;
+    --panel: #111318;
+    --panel2: #181b22;
+    --border: #292d36;
+    --text: #ffffff;
+    --muted: #969ba5;
+    --red: #e10600;
+    --red2: #ff2b24;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* ================= HEADER ================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    background: rgba(7,8,11,.94);
+    backdrop-filter: blur(15px);
+
+    border-bottom: 1px solid var(--border);
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--red);
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: .2s;
+}
+
+nav a:hover {
+    color: white;
+}
+
+.menu {
+    display: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 620px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 80px 8%;
+
+    background:
+        linear-gradient(90deg,
+            rgba(7,8,11,1) 0%,
+            rgba(7,8,11,.86) 45%,
+            rgba(7,8,11,.25) 100%),
+        url("https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=2000&q=85");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.small-title {
+    color: var(--red2);
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: clamp(50px, 7vw, 90px);
+    line-height: .9;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: var(--red);
+}
+
+.hero p {
+    color: #c7c7c7;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.button {
+    display: inline-block;
+    padding: 14px 25px;
+
+    background: var(--red);
+    color: white;
+
+    text-decoration: none;
+    font-weight: bold;
+
+    border-radius: 6px;
+
+    transition: .2s;
+}
+
+.button:hover {
+    background: var(--red2);
+    transform: translateY(-2px);
+}
+
+/* ================= SECTIONS ================= */
+
+section {
+    padding: 80px 7%;
+}
+
+.section-title {
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    font-size: 36px;
+}
+
+.section-title p {
+    color: var(--muted);
+    margin-top: 8px;
+}
+
+/* ================= NEXT RACE ================= */
+
+.next-race {
+    background: linear-gradient(135deg, #15171d, #0d0e12);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    padding: 35px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 30px;
+}
+
+.race-info h3 {
+    font-size: 32px;
+    margin: 10px 0;
+}
+
+.country {
+    font-size: 18px;
+    color: #ddd;
+}
+
+.circuit {
+    color: var(--muted);
+}
+
+.countdown {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+.time-box {
+    background: #090a0d;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    min-width: 85px;
+    padding: 18px 10px;
+
+    text-align: center;
+}
+
+.time-box strong {
+    display: block;
+    font-size: 30px;
+}
+
+.time-box span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* ================= TABLE ================= */
+
+.table-container {
+    overflow-x: auto;
+
+    border: 1px solid var(--border);
+    border-radius: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+th {
+    background: var(--panel2);
+    color: var(--muted);
+    font-size: 12px;
+    text-align: left;
+}
+
+th, td {
+    padding: 17px;
+    border-bottom: 1px solid var(--border);
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover td {
+    background: #15171c;
+}
+
+.position {
+    font-weight: bold;
+    color: var(--muted);
+}
+
+.driver {
+    font-weight: bold;
+}
+
+.team {
+    color: var(--muted);
+}
+
+.points {
+    font-weight: bold;
+}
+
+/* ================= DRIVER AVATARS ================= */
+
+.avatar {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    background: #272a31;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 10px;
+
+    font-weight: bold;
+}
+
+/* ================= CARDS ================= */
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(240px, 1fr));
+
+    gap: 20px;
+}
+
+.card {
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    transition: .25s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: #4a4f59;
+}
+
+.card-image {
+    height: 150px;
+
+    background:
+        linear-gradient(135deg, #252831, #101116);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 60px;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    margin-bottom: 7px;
+}
+
+.card-content p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* ================= CIRCUITS ================= */
+
+.circuit-card {
+    padding: 25px;
+}
+
+.circuit-number {
+    color: var(--red);
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.circuit-card h3 {
+    margin: 10px 0;
+    font-size: 24px;
+}
+
+.circuit-card p {
+    color: var(--muted);
+}
+
+.circuit-stats {
+    margin-top: 20px;
+
+    display: flex;
+    justify-content: space-between;
+
+    border-top: 1px solid var(--border);
+    padding-top: 15px;
+}
+
+.circuit-stats span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.circuit-stats strong {
+    display: block;
+    margin-top: 5px;
+}
+
+/* ================= ARGENTINA ================= */
+
+.argentina {
+    background:
+        linear-gradient(120deg, #11141a, #090a0d);
+
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.argentina-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 50px;
+
+    align-items: center;
+}
+
+.argentina h2 {
+    font-size: 48px;
+}
+
+.argentina h2 span {
+    color: var(--red);
+}
+
+.argentina p {
+    color: #aaa;
+    line-height: 1.7;
+    margin: 20px 0;
+}
+
+.driver-big {
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    padding: 35px;
+
+    text-align: center;
+}
+
+.driver-number {
+    font-size: 100px;
+    font-weight: 900;
+    color: var(--red);
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    padding: 40px 7%;
+
+    border-top: 1px solid var(--border);
+
+    display: flex;
+    justify-content: space-between;
+
+    color: var(--muted);
+}
+
+footer strong {
+    color: white;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 800px) {
+
+    nav {
+        display: none;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    .hero {
+        min-height: 550px;
+        padding: 50px 7%;
+    }
+
+    .next-race {
+        grid-template-columns: 1fr;
+    }
+
+    .countdown {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .argentina-box {
+        grid-template-columns: 1fr;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+        F1 <span>HUB</span>
+    </div>
+
+    <nav>
+        <a href="#calendario">Calendario</a>
+        <a href="#campeonato">Campeonato</a>
+        <a href="#pilotos">Pilotos</a>
+        <a href="#circuitos">Circuitos</a>
+    </nav>
+
+    <div class="menu">
+        ☰
+    </div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<div class="hero">
+
+    <div class="hero-content">
+
+        <div class="small-title">
+            FORMULA 1
+        </div>
+
+        <h1>
+            TODO EL MUNDO<br>
+            DE LA <span>F1</span>
+        </h1>
+
+        <p>
+            Calendario, pilotos, equipos, circuitos y campeonato.
+            Todo en un solo lugar.
+        </p>
+
+        <a href="#campeonato" class="button">
+            Ver campeonato
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- ================= NEXT RACE ================= -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>Próxima carrera</h2>
+
+        <p>
+            Prepará tu domingo de Fórmula 1.
+        </p>
+
+    </div>
+
+    <div class="next-race">
+
+        <div class="race-info">
+
+            <div class="small-title">
+                PRÓXIMO GRAN PREMIO
+            </div>
+
+            <h3 id="nextRaceName">
+                GP DE BRASIL
+            </h3>
+
+            <div class="country">
+                🇧🇷 Brasil
+            </div>
+
+            <div class="circuit">
+                Autódromo José Carlos Pace · Interlagos
+            </div>
+
+        </div>
+
+        <div class="countdown">
+
+            <div class="time-box">
+                <strong id="days">--</strong>
+                <span>DÍAS</span>
+            </div>
+
+            <div class="time-box">
+                <strong id="hours">--</strong>
+                <span>HORAS</span>
+            </div>
+
+            <div class="time-box">
+                <strong id="minutes">--</strong>
+                <span>MIN</span>
+            </div>
+
+            <div class="time-box">
+                <strong id="seconds">--</strong>
+                <span>SEG</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CAMPEONATO ================= -->
+
+<section id="campeonato">
+
+    <div class="section-title">
+
+        <h2>Campeonato de pilotos</h2>
+
+        <p>
+            Tabla de posiciones.
+        </p>
+
+    </div>
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>POS</th>
+                    <th>PILOTO</th>
+                    <th>EQUIPO</th>
+                    <th>PUNTOS</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="standings">
+
+                <tr>
+                    <td class="position">1</td>
+                    <td class="driver">
+                        <span class="avatar">1</span>
+                        Piloto 1
+                    </td>
+                    <td class="team">Equipo</td>
+                    <td class="points">000</td>
+                </tr>
+
+                <tr>
+                    <td class="position">2</td>
+                    <td class="driver">
+                        <span class="avatar">2</span>
+                        Piloto 2
+                    </td>
+                    <td class="team">Equipo</td>
+                    <td class="points">000</td>
+                </tr>
+
+                <tr>
+                    <td class="position">3</td>
+                    <td class="driver">
+                        <span class="avatar">3</span>
+                        Piloto 3
+                    </td>
+                    <td class="team">Equipo</td>
+                    <td class="points">000</td>
+                </tr>
+
+                <tr>
+                    <td class="position">4</td>
+                    <td class="driver">
+                        <span class="avatar">4</span>
+                        Piloto 4
+                    </td>
+                    <td class="team">Equipo</td>
+                    <td class="points">000</td>
+                </tr>
+
+                <tr>
+                    <td class="position">5</td>
+                    <td class="driver">
+                        <span class="avatar">5</span>
+                        Piloto 5
+                    </td>
+                    <td class="team">Equipo</td>
+                    <td class="points">000</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PILOTOS ================= -->
+
+<section id="pilotos">
+
+    <div class="section-title">
+
+        <h2>Pilotos</h2>
+
+        <p>
+            La parrilla de Fórmula 1.
+        </p>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <div class="card-image">🏎️</div>
+            <div class="card-content">
+                <h3>Piloto 1</h3>
+                <p>Equipo · #1</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image">🏎️</div>
+            <div class="card-content">
+                <h3>Piloto 2</h3>
+                <p>Equipo · #2</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image">🏎️</div>
+            <div class="card-content">
+                <h3>Piloto 3</h3>
+                <p>Equipo · #3</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image">🏎️</div>
+            <div class="card-content">
+                <h3>Piloto 4</h3>
+                <p>Equipo · #4</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CIRCUITOS ================= -->
+
+<section id="circuitos">
+
+    <div class="section-title">
+
+        <h2>Circuitos</h2>
+
+        <p>
+            Algunas de las pistas más conocidas del calendario.
+        </p>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="card circuit-card">
+
+            <span class="circuit-number">
+                CIRCUITO 01
+            </span>
+
+            <h3>Interlagos</h3>
+
+            <p>
+                São Paulo · Brasil
+            </p>
+
+            <div class="circuit-stats">
+
+                <div>
+                    <span>LONGITUD</span>
+                    <strong>4.309 km</strong>
+                </div>
+
+                <div>
+                    <span>CURVAS</span>
+                    <strong>15</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card circuit-card">
+
+            <span class="circuit-number">
+                CIRCUITO 02
+            </span>
+
+            <h3>Spa-Francorchamps</h3>
+
+            <p>
+                Stavelot · Bélgica
+            </p>
+
+            <div class="circuit-stats">
+
+                <div>
+                    <span>LONGITUD</span>
+                    <strong>7.004 km</strong>
+                </div>
+
+                <div>
+                    <span>CURVAS</span>
+                    <strong>19</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card circuit-card">
+
+            <span class="circuit-number">
+                CIRCUITO 03
+            </span>
+
+            <h3>Monza</h3>
+
+            <p>
+                Monza · Italia
+            </p>
+
+            <div class="circuit-stats">
+
+                <div>
+                    <span>LONGITUD</span>
+                    <strong>5.793 km</strong>
+                </div>
+
+                <div>
+                    <span>CURVAS</span>
+                    <strong>11</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card circuit-card">
+
+            <span class="circuit-number">
+                CIRCUITO 04
+            </span>
+
+            <h3>Silverstone</h3>
+
+            <p>
+                Silverstone · Reino Unido
+            </p>
+
+            <div class="circuit-stats">
+
+                <div>
+                    <span>LONGITUD</span>
+                    <strong>5.891 km</strong>
+                </div>
+
+                <div>
+                    <span>CURVAS</span>
+                    <strong>18</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ARGENTINA ================= -->
+
+<section class="argentina">
+
+    <div class="argentina-box">
+
+        <div>
+
+            <div class="small-title">
+                ARGENTINA 🇦🇷
+            </div>
+
+            <h2>
+                FRANCO <span>COLAPINTO</span>
+            </h2>
+
+            <p>
+                Sección especial para seguir la trayectoria,
+                resultados y estadísticas del piloto argentino.
+            </p>
+
+            <a href="#pilotos" class="button">
+                Ver pilotos
+            </a>
+
+        </div>
+
+        <div class="driver-big">
+
+            <div class="driver-number">
+                43
+            </div>
+
+            <h3>
+                Franco Colapinto
+            </h3>
+
+            <p>
+                Argentina 🇦🇷
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CALENDARIO ================= -->
+
+<section id="calendario">
+
+    <div class="section-title">
+
+        <h2>Calendario</h2>
+
+        <p>
+            Grandes Premios de la temporada.
+        </p>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="card circuit-card">
+            <span class="circuit-number">01</span>
+            <h3>Australia</h3>
+            <p>Albert Park</p>
+        </div>
+
+        <div class="card circuit-card">
+            <span class="circuit-number">02</span>
+            <h3>Japón</h3>
+            <p>Suzuka</p>
+        </div>
+
+        <div class="card circuit-card">
+            <span class="circuit-number">03</span>
+            <h3>Italia</h3>
+            <p>Monza</p>
+        </div>
+
+        <div class="card circuit-card">
+            <span class="circuit-number">04</span>
+            <h3>Brasil</h3>
+            <p>Interlagos</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div>
+        <strong>F1 HUB</strong>
+        <br>
+        Fórmula 1 para todos.
+    </div>
+
+    <div>
+        © 2026 F1 Hub
+    </div>
+
+</footer>
+
+
+<script>
+
+/* ================= COUNTDOWN ================= */
+
+/*
+    Cambiá esta fecha por la fecha/hora de la próxima carrera.
+
+    Formato:
+    YYYY-MM-DDTHH:MM:SS
+*/
+
+const raceDate = new Date("2026-11-08T14:00:00").getTime();
+
+function updateCountdown() {
+
+    const now = new Date().getTime();
+
+    const difference = raceDate - now;
+
+    if (difference <= 0) {
+
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+
+        return;
+    }
+
+    const days =
+        Math.floor(difference / (1000 * 60 * 60 * 24));
+
+    const hours =
+        Math.floor(
+            (difference / (1000 * 60 * 60)) % 24
+        );
+
+    const minutes =
+        Math.floor(
+            (difference / (1000 * 60)) % 60
+        );
+
+    const seconds =
+        Math.floor(
+            (difference / 1000) % 60
+        );
+
+    document.getElementById("days").textContent =
+        String(days).padStart(2, "0");
+
+    document.getElementById("hours").textContent =
+        String(hours).padStart(2, "0");
+
+    document.getElementById("minutes").textContent =
+        String(minutes).padStart(2, "0");
+
+    document.getElementById("seconds").textContent =
+        String(seconds).padStart(2, "0");
+}
+
+setInterval(updateCountdown, 1000);
+
+updateCountdown();
+
+
+/* ================= MOBILE MENU ================= */
+
+const menu = document.querySelector(".menu");
+const nav = document.querySelector("nav");
+
+menu.addEventListener("click", () => {
+
+    if (nav.style.display === "flex") {
+        nav.style.display = "none";
+    } else {
+
+        nav.style.display = "flex";
+
+        nav.style.position = "absolute";
+        nav.style.top = "72px";
+        nav.style.left = "0";
+        nav.style.right = "0";
+
+        nav.style.padding = "25px";
+
+        nav.style.background = "#101116";
+
+        nav.style.flexDirection = "column";
+    }
+
+});
+
+</script>
+
+</body>
+</html>
+```
